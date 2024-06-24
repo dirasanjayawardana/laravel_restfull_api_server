@@ -7,7 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
 {
-    // Custom Response yang akan dikirimkan
+    // Resource --> Custom Response yang akan dikirimkan
 
     public function toArray(Request $request): array
     {

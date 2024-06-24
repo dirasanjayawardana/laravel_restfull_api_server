@@ -19,6 +19,7 @@ class UserRegisterRequest extends FormRequest
     // untuk mengubah default nama attribute, bisa menggunakan method attributes()
     // jika ingin melakukan sesuatu sebelum validasi, bisa menggunakan method prepareForValidation()
     // jika ingin melakukan sesuatu setelah validasi, bisa menggunakan method passedValidation()
+    // custom response ketika terjadi validation exception, bisa menggunakan failedValidation()
 
     public function authorize(): bool
     {

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UserLoginRequest extends FormRequest
+class CreateContactRequest extends FormRequest
 {
     // Custom Request (ketika membuat form request yg kompleks, baiknya membuat custom request agar lebih rapi ketika melakukan validasi)
     // membuat custom request: php artisan make:request NamaCustomRequest
@@ -24,18 +24,20 @@ class UserLoginRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        // membatasi yang bisa akses hanya ketika sudah login, dengan mengecek user yang tersimpan dari middleware
+        return $this->user() != null;
     }
 
     public function rules(): array
     {
         return [
-            'username' => ['required', 'max:100'],
-            'password' => ['required', 'max:100'],
+            'first_name' => ['required', 'max:100'],
+            'last_name' => ['nullable', 'max:100'],
+            'email' => ['nullable', 'max:200', 'email'],
+            'phone' => ['nullable', 'max:20'],
         ];
     }
 
-    // custom response ketika terjadi validation exception
     protected function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(response([
