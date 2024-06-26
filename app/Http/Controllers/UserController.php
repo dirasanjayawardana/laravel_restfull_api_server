@@ -17,10 +17,9 @@ use Illuminate\Support\Str;
 class UserController extends Controller
 {
     // untuk api registrasikan route nya di routes/api.php, bukan di routes/web.php
-
     // menggunakan custom response dan custom request
 
-    
+
     public function register(UserRegisterRequest $request): JsonResponse
     {
         // mengambil data yang selesai di validasi di custom request

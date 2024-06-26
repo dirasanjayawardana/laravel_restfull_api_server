@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class ContactUpdateRequest extends FormRequest
+class AddressCreateRequest extends FormRequest
 {
     // Custom Request (ketika membuat form request yg kompleks, baiknya membuat custom request agar lebih rapi ketika melakukan validasi)
     // membuat custom request: php artisan make:request NamaCustomRequest
@@ -21,7 +21,6 @@ class ContactUpdateRequest extends FormRequest
     // jika ingin melakukan sesuatu setelah validasi, bisa menggunakan method passedValidation()
     // custom response ketika terjadi validation exception, bisa menggunakan failedValidation()
 
-
     public function authorize(): bool
     {
         return $this->user() != null;
@@ -30,10 +29,11 @@ class ContactUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'first_name' => ['required', 'max:100'],
-            'last_name' => ['nullable', 'max:100'],
-            'email' => ['nullable', 'max:200', 'email'],
-            'phone' => ['nullable', 'max:20'],
+            "street" => ['nullable', 'max:200'],
+            "city" => ['nullable', 'max:100'],
+            "province" => ['nullable', 'max:100'],
+            "country" => ['required', 'max:100'],
+            "postal_code" => ['nullable', 'max:10'],
         ];
     }
 
